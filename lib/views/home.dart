@@ -3,7 +3,7 @@ import '';
 import 'package:flutter/material.dart';
 import 'package:music_app/views/widgets/song_card.dart';
 import 'package:http/http.dart' as http;
-import 'package:music_app/views/models/song.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    getSong();
   }
 
   Future<void> getSong() async {
@@ -25,7 +26,6 @@ class _HomePageState extends State<HomePage> {
     setState{(){
       _isLoading =false;
     });
-  print(_songs);
   }
 
   var response;
@@ -55,12 +55,25 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: //(data["message"]["body"]["track_list"])
-          SongCard(
-        title: 'san',
-        songTime: '3min',
-        rating: '3.4',
-      ),
+      body: _isLoading ? Center(child: CircularProgressIndicator()) : ListView.builder(
+    itemCount: _songs.length,
+    itemBuilder: (context,index){
+      return SongCard(
+        title: _songs[index].name,
+        rating: _songs[index].rating.toString(),
+        songTime: _songs[index].totalTime,
+      );
+    },
+
+
+      )
+      //(data["message"]["body"]["track_list"])
+
+      //     SongCard(
+      //   title: 'san',
+      //   songTime: '3min',
+      //   rating: '3.4',
+      // ),
     );
   }
 }

@@ -20,4 +20,9 @@ class Song {
   static Iterable<Song> songsFromSnapshot(List snapshot) {
     return snapshot.map((data) => Song.fromJson(data)).toList();
   }
+
+  @override
+  String toString() {
+    return 'Song{name: $name, image:$images, rating: $rating, totalTime: $totalTime}';
+  }
 }
