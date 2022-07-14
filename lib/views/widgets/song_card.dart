@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SongCard extends StatelessWidget {
-  final String title;
-  final String rating;
-  final String songTime;
+  final String name;
+  final String album_name;
+  final String artist_name;
+  final String totalTime;
   SongCard({
-    required this.title,
-    required this.songTime,
-    required this.rating,
+    required this.name,
+    required this.album_name,
+    required this.artist_name,
+    required this.totalTime,
   });
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class SongCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 180,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.black,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
@@ -29,6 +31,14 @@ class SongCard extends StatelessWidget {
             spreadRadius: -6.0,
           ),
         ],
+        image: DecorationImage(
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.35),
+            BlendMode.multiply,
+          ),
+          image: AssetImage('assets/zayn.jpeg'),
+          fit: BoxFit.cover,
+        ),
       ),
       child: Stack(
         children: [
@@ -36,10 +46,8 @@ class SongCard extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 19,
-                ),
+                "title",
+                style: TextStyle(fontSize: 19, color: Colors.cyan),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
@@ -66,7 +74,11 @@ class SongCard extends StatelessWidget {
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                      Text(rating),
+                      Text(
+                        "rating",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.cyan),
+                      ),
                     ],
                   ),
                 ),
@@ -85,10 +97,14 @@ class SongCard extends StatelessWidget {
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                      Text(songTime),
+                      Text(
+                        "cookTime",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.cyan),
+                      ),
                     ],
                   ),
-                ),
+                )
               ],
             ),
             alignment: Alignment.bottomLeft,

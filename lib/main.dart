@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:music_app/views/home.dart';
+import 'package:http/http.dart' as http;
+
+import 'models/song.dart';
 
 void main() {
   runApp(const MyApp());
